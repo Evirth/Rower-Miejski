@@ -1,4 +1,4 @@
-package com.example.evirth.rowermiejski;
+package com.example.aimk.pedalmiejski;
 
 import org.junit.Test;
 

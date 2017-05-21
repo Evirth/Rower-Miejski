@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/TopUpAccountButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Doładuj konto" />
+
+    <Button
+        android:id="@+id/ChangePasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/TopUpAccountButton"
+        android:layout_alignStart="@+id/TopUpAccountButton"
+        android:layout_below="@+id/TopUpAccountButton"
+        android:layout_marginTop="28dp"
+
+        android:text="Zmień hasło" />
+
+    <Button
+        android:id="@+id/DeleteAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:text="Usuń konto "
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/ChangePasswordButton"
+        android:layout_alignEnd="@+id/ChangePasswordButton" />
+</RelativeLayout>
