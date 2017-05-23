@@ -1,5 +1,8 @@
 package com.example.aimk.pedalmiejski;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -64,7 +67,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_torch) {
+            boolean isTorchOn = getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+            Camera cam = Camera.open();
+            if (isTorchOn) {
+                Camera.Parameters p = cam.getParameters();
+                p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                cam.setParameters(p);
+                cam.startPreview();
+            }
+            else{
+                cam.stopPreview();
+                cam.release();
+            }
             return true;
         }
 
