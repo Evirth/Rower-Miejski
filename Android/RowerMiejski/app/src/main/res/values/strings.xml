@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PedalMiejski</string>
+    <string name="app_name">Pedał Miejski</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -19,4 +19,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+<!--StringFaq-->
+    <string name="faq1String">Wiadomość 1</string>
+    <string name="faq2String">Wiadomość 2</string>
+    <string name="faq3String">Wiadomość 3</string>
+    <string name="faq4String">Wiadomość 4</string>
+
 </resources>
