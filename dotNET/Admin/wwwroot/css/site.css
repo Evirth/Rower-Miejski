@@ -4,6 +4,6 @@
 }
 
 .form-control-feedback {
-    top: 25px;
-    right: 15px;
+    padding-top: 25px;
+    padding-right: 25px;
 } 

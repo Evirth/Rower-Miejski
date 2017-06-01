@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Admin
 {
@@ -11,8 +8,17 @@ namespace Admin
     {
         public static void Main(string[] args)
         {
+            var secretConfig = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.secret.json", optional: true)
+                .Build();
+
             var host = new WebHostBuilder()
-                .UseKestrel()
+                .UseKestrel(options =>
+                {
+                    var certificate = Path.Combine(secretConfig.GetValue<string>("CertDir"), secretConfig.GetValue<string>("CertName"));
+                    options.UseHttps(certificate, secretConfig.GetValue<string>("CertPassword"));
+                })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
