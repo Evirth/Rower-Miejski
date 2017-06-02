@@ -14,11 +14,11 @@ namespace Admin
                 .Build();
 
             var host = new WebHostBuilder()
-                .UseKestrel(options =>
+                .UseKestrel(/*options =>
                 {
                     var certificate = Path.Combine(secretConfig.GetValue<string>("CertDir"), secretConfig.GetValue<string>("CertName"));
                     options.UseHttps(certificate, secretConfig.GetValue<string>("CertPassword"));
-                })
+                }*/)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
