@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@inject IViewLocalizer Localizer;
 
 <!DOCTYPE html>
 <html>
@@ -41,8 +40,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Login" asp-action="Index">@Localizer["LoginPage"]</a></li>
+                    @*<li><a asp-area="" asp-controller="Login" asp-action="Index"></a></li>*@
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>

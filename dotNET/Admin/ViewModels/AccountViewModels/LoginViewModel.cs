@@ -1,16 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Admin.Models
+namespace Admin.ViewModels.AccountViewModels
 {
-    public class Login
+    public class LoginViewModel
     {
-        [JsonProperty("username")]
+        [JsonProperty("email")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public string Username { get; set; }
+        [EmailAddress(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "WrongEmail")]
+        public string Email { get; set; }
 
         [JsonProperty("password")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

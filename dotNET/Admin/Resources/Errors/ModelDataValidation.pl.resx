@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PageTitle" xml:space="preserve">
-    <value>Logowanie</value>
+  <data name="EmptyField" xml:space="preserve">
+    <value>To pole nie może być puste</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Hasło</value>
+  <data name="PasswordCompare" xml:space="preserve">
+    <value>Wprowadzone hasła nie zgadzają się</value>
   </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Zaloguj</value>
+  <data name="PasswordLength" xml:space="preserve">
+    <value>Hasło musi mieć od {2} do {1} znaków</value>
   </data>
-  <data name="Username" xml:space="preserve">
-    <value>Nazwa użytkownika</value>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>Nieprawidłowy adres email</value>
   </data>
 </root>

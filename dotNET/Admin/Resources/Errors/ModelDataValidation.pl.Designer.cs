@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Admin.Resources.Views.Shared {
+namespace Admin.Resources.Errors {
     using System;
     using System.Reflection;
     
@@ -23,14 +23,14 @@ namespace Admin.Resources.Views.Shared {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class _Layout {
+    internal class ModelDataValidation {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal _Layout() {
+        internal ModelDataValidation() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace Admin.Resources.Views.Shared {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Admin.Resources.Views.Shared._Layout", typeof(_Layout).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Admin.Resources.Errors.ModelDataValidation", typeof(ModelDataValidation).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,20 +62,38 @@ namespace Admin.Resources.Views.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strona główna.
+        ///   Looks up a localized string similar to To pole nie może być puste.
         /// </summary>
-        internal static string HomePage {
+        internal static string EmptyField {
             get {
-                return ResourceManager.GetString("HomePage", resourceCulture);
+                return ResourceManager.GetString("EmptyField", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logowanie.
+        ///   Looks up a localized string similar to Wprowadzone hasła nie zgadzają się.
         /// </summary>
-        internal static string LoginPage {
+        internal static string PasswordCompare {
             get {
-                return ResourceManager.GetString("LoginPage", resourceCulture);
+                return ResourceManager.GetString("PasswordCompare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło musi mieć od {2} do {1} znaków.
+        /// </summary>
+        internal static string PasswordLength {
+            get {
+                return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieprawidłowy adres email.
+        /// </summary>
+        internal static string WrongEmail {
+            get {
+                return ResourceManager.GetString("WrongEmail", resourceCulture);
             }
         }
     }
