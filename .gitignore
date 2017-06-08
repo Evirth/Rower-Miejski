@@ -288,6 +288,8 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+# Secrets
+appsettings.secret.json
 
 #################################################
 ############### Android gitignore ###############
