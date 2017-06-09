@@ -1,12 +1,15 @@
 package com.example.aimk.pedalmiejski;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,13 +23,17 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Camera camera;
+    Camera.Parameters parameters;
+    boolean isFlash = false;
+    boolean isOn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +47,13 @@ public class MainActivity extends AppCompatActivity
         //ekran startowy
         android.app.FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame,new RentBikeFragment()).commit();
+
+        if(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))
+        {
+            camera=Camera.open();
+            parameters=camera.getParameters();
+            isFlash=true;
+        }
     }
 
     @Override
@@ -59,7 +73,43 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
+    public boolean turnFlashLight()
+    {
+        if(isFlash)
+        {
+            if(!isOn) {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(parameters);
+                camera.startPreview();
+                isOn=true;
+            }
+            else {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(parameters);
+                camera.stopPreview();
+                isOn=false;
+
+            }
+            return true;
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Error...");
+            builder.setMessage("Flashlight is not Available on this device...");
+            builder.setPositiveButton("OK",new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick (DialogInterface dialog,int width){
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            return false;
+        }
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -68,19 +118,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_torch) {
-            boolean isTorchOn = getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-            Camera cam = Camera.open();
-            if (isTorchOn) {
-                Camera.Parameters p = cam.getParameters();
-                p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-                cam.setParameters(p);
-                cam.startPreview();
-            }
-            else{
-                cam.stopPreview();
-                cam.release();
-            }
-            return true;
+            turnFlashLight();
         }
 
         return super.onOptionsItemSelected(item);
@@ -122,5 +160,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void onStop()
+    {
+        super.onStop();
+        if(camera!=null)
+        {
+            camera.release();
+            camera=null;
+        }
     }
 }
