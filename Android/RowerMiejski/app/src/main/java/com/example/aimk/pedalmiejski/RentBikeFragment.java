@@ -1,8 +1,12 @@
 package com.example.aimk.pedalmiejski;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,11 @@ public class RentBikeFragment extends Fragment implements View.OnClickListener{
     View myView;
     Button button1; Button button2; Button button3; Button button4; Button button5; Button button6; Button button7; Button button8; Button button9; Button button0; Button buttonTorch; Button buttonDelete;
     EditText numberEditText;
+
+    Camera camera;
+    Camera.Parameters parameters;
+    boolean isFlash = false;
+    boolean isOn = false;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -84,6 +93,45 @@ public void onClick(View v) {
                     numberEditText.setText(text.substring(0, text.length() - 1));
                 }
                 break;
+            case R.id.KeypadButtonTorch:
+                    turnFlashLight();
+                break;
         }
         }
+
+    public boolean turnFlashLight()
+    {
+        if(isFlash)
+        {
+            if(!isOn) {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(parameters);
+                camera.startPreview();
+                isOn=true;
+            }
+            else {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(parameters);
+                camera.stopPreview();
+                isOn=false;
+
+            }
+            return true;
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Error...");
+            builder.setMessage("Flashlight is not Available on this device...");
+            builder.setPositiveButton("OK",new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick (DialogInterface dialog,int width){
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            return false;
+        }
+    }
 }
