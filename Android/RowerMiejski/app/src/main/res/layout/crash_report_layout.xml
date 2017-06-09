@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/activity_vertical_margin">
 
     <TextView
         android:id="@+id/textView2"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="214dp"
-        android:text="Zgłoszenie awarii" />
-</RelativeLayout>
+        android:text="Wybierz rodzaj awarii:" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/NumerStacjiText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Numer stacji"/>
+
+    <EditText
+        android:id="@+id/NumerRoweruText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Numer roweru" />
+
+    <EditText
+        android:id="@+id/opisProblemuText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:hint="@string/opis_problemu"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/wyslijButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WYŚLIJ" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

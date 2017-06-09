@@ -20,11 +20,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    
+    <string-array name="category_names">
+        <item>Rower</item>
+        <item>Stacja</item>
+        <item>Inne</item>
+    </string-array>
 
 <!--StringFaq-->
     <string name="faq1String">Wiadomość 1</string>
     <string name="faq2String">Wiadomość 2</string>
     <string name="faq3String">Wiadomość 3</string>
     <string name="faq4String">Wiadomość 4</string>
+    <string name="opis_problemu">Opis problemu</string>
 
 </resources>
