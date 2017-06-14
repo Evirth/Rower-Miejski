@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
+using System.Threading.Tasks;
+using Admin.Configuration;
 using Admin.Data;
 using Admin.Interfaces;
 using Admin.Models;
 using Admin.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -14,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Admin
 {
@@ -52,14 +58,33 @@ namespace Admin
                     opts => { opts.ResourcesPath = "Resources"; })
                 .AddDataAnnotationsLocalization();
 
+            services.Configure<IdentityOptions>(config =>
+            {
+                config.Cookies.ApplicationCookie.AutomaticChallenge = false;
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                        {
+                            ctx.Response.StatusCode = 401;
+                            return Task.FromResult<object>(null);
+                        }
+
+                        ctx.Response.Redirect(ctx.RedirectUri);
+                        return Task.FromResult<object>(null);
+                    }
+                };
+            });
+
             services.Configure<RequestLocalizationOptions>(
                 opts =>
                 {
                     var supportedCultures = new List<CultureInfo>
-                {
-                    new CultureInfo("en-US"),
-                    new CultureInfo("pl"),
-                };
+                    {
+                        new CultureInfo("en-US"),
+                        new CultureInfo("pl"),
+                    };
 
                     opts.DefaultRequestCulture = new RequestCulture(culture: "pl", uiCulture: "pl");
                     opts.SupportedCultures = supportedCultures;
@@ -67,6 +92,9 @@ namespace Admin
                 });
 
             services.AddTransient<IEmailSender, AuthMessageSender>();
+
+            var jwtConfig = Configuration.GetSection("Jwt");
+            services.Configure<JwtConfig>(jwtConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +119,21 @@ namespace Admin
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseJwtBearerAuthentication(new JwtBearerOptions()
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["SecretKey"])),
+                    ValidAudience = Configuration.GetSection("Jwt")["ValidAudience"],
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero,
+                    ValidIssuer = Configuration.GetSection("Jwt")["ValidIssuer"]
+                }
+            });
 
             app.UseMvc(routes =>
             {
