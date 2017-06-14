@@ -13,7 +13,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -91,6 +93,11 @@ namespace Admin
                     opts.SupportedUICultures = supportedCultures;
                 });
 
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+
             services.AddTransient<IEmailSender, AuthMessageSender>();
 
             var jwtConfig = Configuration.GetSection("Jwt");
@@ -113,11 +120,10 @@ namespace Admin
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(options.Value);
+            var localizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(localizationOptions.Value);
 
             app.UseStaticFiles();
-
             app.UseIdentity();
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions()
@@ -134,6 +140,9 @@ namespace Admin
                     ValidIssuer = Configuration.GetSection("Jwt")["ValidIssuer"]
                 }
             });
+
+            var httpsOptions = new RewriteOptions().AddRedirectToHttps();
+            app.UseRewriter(httpsOptions);
 
             app.UseMvc(routes =>
             {
