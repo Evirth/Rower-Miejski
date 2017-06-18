@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="spinnerText">#000000</color>
+    <color name="faqTitle">#212121</color>
+    <color name="faqText">#616161</color>
 
 </resources>

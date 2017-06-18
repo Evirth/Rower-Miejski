@@ -17,23 +17,49 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+
+    <!-- Zglaszanie awarii -->
+    <string name="opis_problemu">Opis problemu</string>
+    <string name="pole_wymagane">Pole wymagane</string>
+    <string name="rodzaj_awarii">Wybierz rodzaj awarii:</string>
+
     <string-array name="category_names">
         <item>Rower</item>
         <item>Stacja</item>
         <item>Inne</item>
     </string-array>
 
-<!--StringFaq-->
-    <string name="faq1String">Wiadomość 1</string>
-    <string name="faq2String">Wiadomość 2</string>
-    <string name="faq3String">Wiadomość 3</string>
-    <string name="faq4String">Wiadomość 4</string>
-    <string name="opis_problemu">Opis problemu</string>
-    <string name="pole_wymagane">Pole wymagane</string>
-    <string name="rodzaj_awarii">Wybierz rodzaj awarii:</string>
+    <!-- FAQ -->
+    <string name="faq1Title">Pytanie 1</string>
+    <string name="faq1Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq2Title">Pytanie 2</string>
+    <string name="faq2Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq3Title">Pytanie 3</string>
+    <string name="faq3Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq4Title">Pytanie 4</string>
+    <string name="faq4Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq5Title">Pytanie 5</string>
+    <string name="faq5Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string-array name="FAQ_title_strings">
+        <item>@string/faq1Title</item>
+        <item>@string/faq2Title</item>
+        <item>@string/faq3Title</item>
+        <item>@string/faq4Title</item>
+        <item>@string/faq5Title</item>
+    </string-array>
+
+    <string-array name="FAQ_text_strings">
+        <item>@string/faq1Text</item>
+        <item>@string/faq2Text</item>
+        <item>@string/faq3Text</item>
+        <item>@string/faq4Text</item>
+        <item>@string/faq5Text</item>
+    </string-array>
 
 </resources>

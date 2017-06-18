@@ -5,6 +5,7 @@
         <item
             android:id="@+id/rent_bike_drawer"
             android:icon="@drawable/ic_menu_rent_bike"
+            android:checked="true"
             android:title="Wypożycz rower" />
         <item
             android:id="@+id/return_bike_drawer"
