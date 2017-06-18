@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/action_torch"
-        android:icon="@drawable/cast_ic_notification_on"
+        android:icon="@drawable/ic_torch_white"
         android:title="@string/action_torch"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_openReturn"
-        android:icon="@drawable/cast_ic_notification_on"
+        android:icon="@drawable/ic_menu_return_bike_white"
         android:title="@string/action_openReturn"
         app:showAsAction="always" />
 </menu>

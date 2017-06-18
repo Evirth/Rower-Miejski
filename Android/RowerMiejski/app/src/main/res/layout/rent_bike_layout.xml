@@ -75,7 +75,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="1dp"/>
         <Button
-            android:text="Lat"
+            android:text="NIC"
             android:id="@+id/KeypadButtonTorch"
             android:layout_gravity="fill_horizontal"
             android:layout_columnWeight="1"
