@@ -1,13 +1,11 @@
 package com.example.aimk.pedalmiejski;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,7 +60,7 @@ public class FaqFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = getActivity().getLayoutInflater().inflate(R.layout.list_view_layout,null);
+            convertView = getActivity().getLayoutInflater().inflate(R.layout.faq_element_layout,null);
 
             final String[] titleArray = getResources().getStringArray(R.array.FAQ_title_strings);
             final String[] textArray = getResources().getStringArray(R.array.FAQ_text_strings);

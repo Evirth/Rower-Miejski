@@ -8,4 +8,8 @@
     <dimen name="faq_title_top_margin">8dp</dimen>
     <dimen name="faq_text_top_margin">4dp</dimen>
     <dimen name="faq_all_margin">2dp</dimen>
+    <dimen name="history_rent_return_out_margin">25dp</dimen>
+    <dimen name="history_rent_return_in_margin">10dp</dimen>
+    <dimen name="history_img_margin">6dp</dimen>
+    <dimen name="history_meta_margin">15dp</dimen>
 </resources>

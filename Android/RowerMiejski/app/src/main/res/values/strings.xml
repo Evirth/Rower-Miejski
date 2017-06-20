@@ -62,4 +62,89 @@
         <item>@string/faq5Text</item>
     </string-array>
 
+    <!-- Rental history -->
+    <string name="rental_history_date_text_1">Poniedziałek</string>
+    <string name="rental_history_date_number_1">01.01.1999</string>
+    <string name="rental_history_rent_station_1">Jasne Błonia</string>
+    <string name="rental_history_rent_time_1">08:15</string>
+    <string name="rental_history_return_station_1">Brama Portowa</string>
+    <string name="rental_history_return_time_1">08:20</string>
+    <string name="rental_history_bike_number_1">91468</string>
+    <string name="rental_history_duration_1">00:05</string>
+    <string name="rental_history_price_1">0 PLN</string>
+
+    <string name="rental_history_date_text_2">Niedziela</string>
+    <string name="rental_history_date_number_2">01.01.1999</string>
+    <string name="rental_history_rent_station_2">Stara Cegielnia</string>
+    <string name="rental_history_rent_time_2">11:15</string>
+    <string name="rental_history_return_station_2">Wyszyńskiego</string>
+    <string name="rental_history_return_time_2">13:11</string>
+    <string name="rental_history_bike_number_2">91732</string>
+    <string name="rental_history_duration_2">01:56</string>
+    <string name="rental_history_price_2">3 PLN</string>
+
+    <string name="rental_history_date_text_3">Wtorek</string>
+    <string name="rental_history_date_number_3">01.02.1999</string>
+    <string name="rental_history_rent_station_3">Plac Rodła</string>
+    <string name="rental_history_rent_time_3">15:13</string>
+    <string name="rental_history_return_station_3">Rondo Giedroycia</string>
+    <string name="rental_history_return_time_3">15:34</string>
+    <string name="rental_history_bike_number_3">91965</string>
+    <string name="rental_history_duration_3">00:21</string>
+    <string name="rental_history_price_3">1 PLN</string>
+
+    <string-array name="rental_history_date_text_strings">
+        <item>@string/rental_history_date_text_1</item>
+        <item>@string/rental_history_date_text_2</item>
+        <item>@string/rental_history_date_text_3</item>
+    </string-array>
+
+    <string-array name="rental_history_date_number_strings">
+        <item>@string/rental_history_date_number_1</item>
+        <item>@string/rental_history_date_number_2</item>
+        <item>@string/rental_history_date_number_3</item>
+    </string-array>
+
+    <string-array name="rental_history_rent_station_strings">
+        <item>@string/rental_history_rent_station_1</item>
+        <item>@string/rental_history_rent_station_2</item>
+        <item>@string/rental_history_rent_station_3</item>
+    </string-array>
+
+    <string-array name="rental_history_rent_time_strings">
+        <item>@string/rental_history_rent_time_1</item>
+        <item>@string/rental_history_rent_time_2</item>
+        <item>@string/rental_history_rent_time_3</item>
+    </string-array>
+
+    <string-array name="rental_history_return_station_strings">
+        <item>@string/rental_history_return_station_1</item>
+        <item>@string/rental_history_return_station_2</item>
+        <item>@string/rental_history_return_station_3</item>
+    </string-array>
+
+    <string-array name="rental_history_return_time_strings">
+        <item>@string/rental_history_return_time_1</item>
+        <item>@string/rental_history_return_time_2</item>
+        <item>@string/rental_history_return_time_3</item>
+    </string-array>
+
+    <string-array name="rental_history_bike_number_strings">
+        <item>@string/rental_history_bike_number_1</item>
+        <item>@string/rental_history_bike_number_2</item>
+        <item>@string/rental_history_bike_number_3</item>
+    </string-array>
+
+    <string-array name="rental_history_duration_strings">
+        <item>@string/rental_history_duration_1</item>
+        <item>@string/rental_history_duration_2</item>
+        <item>@string/rental_history_duration_3</item>
+    </string-array>
+
+    <string-array name="rental_history_price_strings">
+        <item>@string/rental_history_price_1</item>
+        <item>@string/rental_history_price_2</item>
+        <item>@string/rental_history_price_3</item>
+    </string-array>
+
 </resources>
