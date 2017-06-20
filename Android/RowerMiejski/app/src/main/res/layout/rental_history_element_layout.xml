@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -46,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_menu_rent_bike"
+                android:src="@drawable/ic_menu_rent_bike"
                 android:layout_marginBottom="@dimen/history_img_margin" />
 
             <TextView
@@ -65,14 +64,15 @@
                     android:id="@+id/history_rent_time_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_menu_rental_history" />
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_rental_history_time"
+                    android:layout_marginEnd="@dimen/history_time_img_margin"/>
 
                 <TextView
                     android:id="@+id/history_rent_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text="14:00" />
 
             </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_menu_return_bike"
+                android:src="@drawable/ic_menu_return_bike"
                 android:layout_marginBottom="@dimen/history_img_margin" />
 
             <TextView
@@ -111,14 +111,15 @@
                     android:id="@+id/history_return_time_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_menu_rental_history" />
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_rental_history_time"
+                    android:layout_marginEnd="@dimen/history_time_img_margin"/>
 
                 <TextView
                     android:id="@+id/history_return_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text="14:21" />
 
             </LinearLayout>
