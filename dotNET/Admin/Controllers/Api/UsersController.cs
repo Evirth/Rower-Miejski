@@ -1,31 +1,32 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Admin.Configuration;
 using Admin.Models;
 using Admin.ViewModels.AccountViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Text;
-using Admin.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Admin.Controllers
+namespace Admin.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api")]
-    public class ApiController : Controller
+    [Route("api/[controller]")]
+    public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly PasswordHasher<ApplicationUser> _passwordHasher;
         private readonly JwtConfig _jwtConfig;
 
-        public ApiController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtConfig> jwtConfig)
+        public UsersController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+            IOptions<JwtConfig> jwtConfig)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,7 +38,7 @@ namespace Admin.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         //// GET: api/Api/5
@@ -65,7 +66,7 @@ namespace Admin.Controllers
         //{
         //}
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Create([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -96,7 +97,7 @@ namespace Admin.Controllers
             return Ok();
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -114,7 +115,7 @@ namespace Admin.Controllers
             return Ok();
         }
 
-        [HttpPost("token")]
+        [HttpPost("Token")]
         public async Task<IActionResult> Token([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid)

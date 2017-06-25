@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Admin
 {
@@ -41,11 +42,9 @@ namespace Admin
 
             Configuration = builder.Build();
         }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -102,9 +101,13 @@ namespace Admin
 
             var jwtConfig = Configuration.GetSection("Jwt");
             services.Configure<JwtConfig>(jwtConfig);
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "City Bike API", Version = "v1", Description = "A simple api for city bike project", TermsOfService = "None"});
+            });
+        }
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -130,7 +133,7 @@ namespace Admin
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
-                TokenValidationParameters = new TokenValidationParameters
+                TokenValidationParameters = new TokenValidationParameters()
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["SecretKey"])),
                     ValidAudience = Configuration.GetSection("Jwt")["ValidAudience"],
@@ -143,6 +146,13 @@ namespace Admin
 
             var httpsOptions = new RewriteOptions().AddRedirectToHttps();
             app.UseRewriter(httpsOptions);
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = "api/swagger";
+            });
 
             app.UseMvc(routes =>
             {

@@ -37,6 +37,7 @@ namespace Admin.ViewModels.AccountViewModels
         public string Surname { get; set; }
 
         [JsonProperty("sex")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
         public string Sex { get; set; }
     }
 }
