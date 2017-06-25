@@ -33,7 +33,6 @@ namespace Admin.Controllers
             _jwtConfig = jwtConfig.Value;
         }
 
-        // GET: api/Api
         [Authorize]
         [HttpGet]
         public IEnumerable<string> Get()
@@ -66,15 +65,25 @@ namespace Admin.Controllers
         //{
         //}
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] LoginViewModel model)
+        [HttpPost("register")]
+        public async Task<IActionResult> Create([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.Values.SelectMany(v => v.Errors).Select(modelError => modelError.ErrorMessage).ToList());
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                Name = model.Name,
+                Surname = model.Surname,
+                Sex = model.Sex,
+                PhoneNumber = model.PhoneNumber,
+                RegisterDate = DateTime.Now
+            };
+
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)

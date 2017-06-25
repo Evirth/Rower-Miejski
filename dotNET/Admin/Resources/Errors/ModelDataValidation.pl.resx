@@ -120,6 +120,9 @@
   <data name="EmptyField" xml:space="preserve">
     <value>To pole nie może być puste</value>
   </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Nieprawidłowy numer telefonu</value>
+  </data>
   <data name="PasswordCompare" xml:space="preserve">
     <value>Wprowadzone hasła nie zgadzają się</value>
   </data>

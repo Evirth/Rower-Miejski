@@ -7,6 +7,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <ul class="nav navbar-nav navbar-left">
+        <li>
+            <a asp-area="" asp-controller="Api" asp-action="Index" title="Manage">@Localizer["Api"]</a>
+        </li>
+    </ul>
+
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
@@ -21,7 +27,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a></li>
         <li><a asp-area="" asp-controller="Account" asp-action="Login">@Localizer["SignIn"]</a></li>
     </ul>
 }

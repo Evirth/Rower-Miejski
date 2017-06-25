@@ -79,13 +79,12 @@ namespace Admin.Controllers
                     return View(model);
                 }
             }
-            
+
             return View(model);
         }
 
         // GET: /Account/Register
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -94,15 +93,21 @@ namespace Admin.Controllers
 
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                user.LockoutEnd = DateTimeOffset.UtcNow.AddSeconds(2);
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Name = model.Name,
+                    Sex = model.Sex,
+                    RegisterDate = DateTime.Now
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -118,7 +123,7 @@ namespace Admin.Controllers
                 }
                 AddErrors(result);
             }
-            
+
             return View(model);
         }
 
@@ -128,7 +133,7 @@ namespace Admin.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation(4,_localizer["LoggedOut"]);
+            _logger.LogInformation(4, _localizer["LoggedOut"]);
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -193,7 +198,7 @@ namespace Admin.Controllers
         {
             return View();
         }
-        
+
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
@@ -216,12 +221,12 @@ namespace Admin.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
             return View();

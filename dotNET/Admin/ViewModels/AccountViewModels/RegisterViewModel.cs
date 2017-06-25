@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Admin.Models.Validation;
 using Newtonsoft.Json;
 
 namespace Admin.ViewModels.AccountViewModels
@@ -18,7 +19,24 @@ namespace Admin.ViewModels.AccountViewModels
 
         [JsonProperty("confirmPassword")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
         [Compare("Password", ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "PasswordCompare")]
         public string ConfirmPassword { get; set; }
+
+        [JsonProperty("phoneNumber")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        [PhoneNumber(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "InvalidPhoneNumber")]
+        public string PhoneNumber { get; set; }
+
+        [JsonProperty("name")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public string Name { get; set; }
+
+        [JsonProperty("surname")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public string Surname { get; set; }
+
+        [JsonProperty("sex")]
+        public string Sex { get; set; }
     }
 }

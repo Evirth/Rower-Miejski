@@ -123,13 +123,31 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
   </data>
 </root>

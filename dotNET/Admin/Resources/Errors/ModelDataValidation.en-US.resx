@@ -120,6 +120,9 @@
   <data name="EmptyField" xml:space="preserve">
     <value>This field cannot be empty</value>
   </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Invalid phone numbers</value>
+  </data>
   <data name="PasswordCompare" xml:space="preserve">
     <value>The password and confirmation password do not match</value>
   </data>

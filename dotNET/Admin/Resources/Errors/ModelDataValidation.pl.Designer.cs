@@ -96,5 +96,16 @@ namespace Admin.Resources.Errors {
                 return ResourceManager.GetString("WrongEmail", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Nieprawidłowy numer telefonu.
+        /// </summary>
+        internal static string InvalidPhoneNumber
+        {
+            get
+            {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
+            }
+        }
     }
 }
