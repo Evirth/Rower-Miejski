@@ -41,8 +41,6 @@ namespace Admin.Controllers.Api
         public JsonResult GetAllUsers()
         {
             List<ApplicationUser> users = new List<ApplicationUser>();
-
-            var asd = _userManager.Users;
             foreach (var user in _userManager.Users)
             {
                 users.Add(user);
