@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Admin.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -56,7 +57,7 @@ namespace Admin.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.Email == "root_rower@gmail.com")
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: true);
                 if (result.Succeeded)
@@ -105,6 +106,7 @@ namespace Admin.Controllers
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     Name = model.Name,
+                    Surname = model.Surname,
                     Sex = model.Sex,
                     RegisterDate = DateTime.Now
                 };

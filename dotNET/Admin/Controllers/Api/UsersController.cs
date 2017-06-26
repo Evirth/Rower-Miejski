@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Admin.Controllers.Api
 {
@@ -36,35 +37,18 @@ namespace Admin.Controllers.Api
 
         [Authorize]
         [HttpGet]
-        public IEnumerable<string> Get()
+        [SwaggerResponse(200, typeof(ApplicationUser))]
+        public JsonResult GetAllUsers()
         {
-            return new[] { "value1", "value2" };
+            List<ApplicationUser> users = new List<ApplicationUser>();
+
+            var asd = _userManager.Users;
+            foreach (var user in _userManager.Users)
+            {
+                users.Add(user);
+            }
+            return Json(users);
         }
-
-        //// GET: api/Api/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/Api
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT: api/Api/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
 
         [HttpPost("Register")]
         public async Task<IActionResult> Create([FromBody] RegisterViewModel model)
