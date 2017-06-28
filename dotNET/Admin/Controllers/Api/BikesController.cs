@@ -45,6 +45,13 @@ namespace Admin.Controllers.Api
                 return BadRequest(ModelState.Values.SelectMany(v => v.Errors).Select(modelError => modelError.ErrorMessage).ToList());
             }
 
+            Station station = FindStationById(bike.Station);
+
+            if (station == null)
+            {
+                return BadRequest("Station not found");
+            }
+
             var b = new Bike()
             {
                 Id = bike.Id ?? Guid.NewGuid().ToString(),
@@ -80,16 +87,21 @@ namespace Admin.Controllers.Api
             try
             {
                 Bike bike = FindBikeById(id);
+                Station station = FindStationById(bike.Station);
                 var result = _bikesContext.Remove(bike);
-                if (result.State == EntityState.Deleted)
+                station.Bikes -= 1;
+                station.FreeRacks += 1;
+                var result2 = _stationsContext.Update(station);
+                if (result.State == EntityState.Deleted && result2.State == EntityState.Modified)
                 {
                     _bikesContext.SaveChanges();
+                    _stationsContext.SaveChanges();
                     return Ok();
                 }
             }
             catch (ArgumentNullException)
             {
-                return BadRequest("Id not found");
+                return BadRequest("Bike not found");
             }
             return BadRequest();
         }
@@ -116,8 +128,9 @@ namespace Admin.Controllers.Api
                     }
                 }
             }
-            catch (AggregateException)
+            catch (DbUpdateException)
             {
+                return BadRequest();
             }
             return BadRequest();
         }
