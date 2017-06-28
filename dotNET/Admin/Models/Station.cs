@@ -1,38 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Admin.Models
 {
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Size
-    {
-        Big,
-        Small
-    }
-
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum BikeStatus
-    {
-        Returned,
-        Rented
-    }
-
-    public class Bike
+    public class Station
     {
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("size")]
+        [JsonProperty("address")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public string Size { get; set; }
+        public string Address { get; set; }
 
-        [JsonProperty("station")]
+        [JsonProperty("city")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public string Station { get; set; }
+        public string City { get; set; }
 
-        [JsonProperty("status")]
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("bikes")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public string Status { get; set; }
+        public int Bikes { get; set; }
+
+        [JsonProperty("freeRacks")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public int FreeRacks { get; set; }
     }
 }

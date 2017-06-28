@@ -18,7 +18,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Admin.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -48,7 +48,7 @@ namespace Admin.Controllers.Api
             return Json(users);
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Create([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -79,25 +79,25 @@ namespace Admin.Controllers.Api
             return Ok();
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] LoginViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
+        //    var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
 
-            if (!result.Succeeded)
-            {
-                return BadRequest();
-            }
+        //    if (!result.Succeeded)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
-        [HttpPost("Token")]
+        [HttpPost("token")]
         public async Task<IActionResult> Token([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid)
