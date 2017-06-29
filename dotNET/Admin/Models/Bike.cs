@@ -32,10 +32,17 @@ namespace Admin.Models
         public string Station { get; set; }
 
         [JsonProperty("status")]
-        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
         public string Status { get; set; }
 
         [JsonProperty("rentedBy")]
         public string RentedBy { get; set; }
+
+        [JsonProperty("bikeNo")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public string BikeNo { get; set; }
+
+        [JsonProperty("lockNo")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public string LockNo { get; set; }
     }
 }

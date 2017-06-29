@@ -58,6 +58,10 @@ namespace Admin.Controllers.Api
             {
                 return BadRequest("Station is full");
             }
+            if (FindBikeByBikeNo(bike.BikeNo) != null)
+            {
+                return BadRequest("Bike with this BikeNo already exists");
+            }
 
             station.Bikes += 1;
             station.FreeRacks -= 1;
@@ -68,7 +72,9 @@ namespace Admin.Controllers.Api
                 Size = bike.Size,
                 Station = bike.Station,
                 Status = bike.Status ?? "Returned",
-                RentedBy = bike.RentedBy
+                RentedBy = bike.RentedBy,
+                BikeNo = bike.BikeNo,
+                LockNo = bike.LockNo
             };
 
             try
@@ -132,11 +138,17 @@ namespace Admin.Controllers.Api
                 {
                     return BadRequest("Bike not found");
                 }
-                
-                b.Size = bike.Size;
+                if (FindBikeByBikeNo(bike.BikeNo) != null)
+                {
+                    return BadRequest("Bike with this BikeNo already exists");
+                }
+
+                b.Size = bike.Size ?? b.Size;
                 b.Station = bike.Station ?? b.Station;
                 b.Status = bike.Status ?? b.Status;
                 b.RentedBy = bike.RentedBy ?? b.RentedBy;
+                b.BikeNo = bike.BikeNo ?? b.BikeNo;
+                b.LockNo = bike.LockNo ?? b.LockNo;
 
                 var result = _bikesContext.Update(b);
                 if (result.State == EntityState.Modified)
@@ -262,6 +274,20 @@ namespace Admin.Controllers.Api
             foreach (var b in _bikesContext.Bikes)
             {
                 if (b.Id == id)
+                {
+                    bike = b;
+                    break;
+                }
+            }
+            return bike;
+        }
+
+        private Bike FindBikeByBikeNo(string bikeNo)
+        {
+            Bike bike = null;
+            foreach (var b in _bikesContext.Bikes)
+            {
+                if (b.BikeNo == bikeNo)
                 {
                     bike = b;
                     break;
