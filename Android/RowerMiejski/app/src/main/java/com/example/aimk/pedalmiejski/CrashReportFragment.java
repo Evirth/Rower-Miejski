@@ -131,7 +131,6 @@ public class CrashReportFragment extends Fragment implements View.OnClickListene
                     else
                     {
                         Toast.makeText(getActivity().getApplicationContext(), "Zgłoszenie przyjęte", Toast.LENGTH_SHORT).show();
-                        navigationView.getMenu().getItem(1).setChecked(true);
                         fragmentManager.beginTransaction().replace(R.id.content_frame,new RentBikeFragment()).commit();
                     }
                 }
