@@ -16,15 +16,23 @@ namespace Admin.Models
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
         public string City { get; set; }
 
+        [JsonProperty("lat")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public float? Lat { get; set; }
+
+        [JsonProperty("lng")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
+        public float? Lng { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
 
         [JsonProperty("bikes")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public int Bikes { get; set; }
+        public int? Bikes { get; set; }
 
         [JsonProperty("freeRacks")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
-        public int FreeRacks { get; set; }
+        public int? FreeRacks { get; set; }
     }
 }

@@ -17,6 +17,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Admin.Controllers.Api
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/users")]
     public class UsersController : Controller
@@ -26,8 +27,7 @@ namespace Admin.Controllers.Api
         private readonly PasswordHasher<ApplicationUser> _passwordHasher;
         private readonly JwtConfig _jwtConfig;
 
-        public UsersController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
-            IOptions<JwtConfig> jwtConfig)
+        public UsersController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtConfig> jwtConfig)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -35,7 +35,6 @@ namespace Admin.Controllers.Api
             _jwtConfig = jwtConfig.Value;
         }
 
-        [Authorize]
         [HttpGet]
         [SwaggerResponse(200, typeof(ApplicationUser))]
         public JsonResult GetAllUsers()
@@ -48,6 +47,38 @@ namespace Admin.Controllers.Api
             return Json(users);
         }
 
+        [HttpPut("changebalance/{id}/{amount}")]
+        public async Task<IActionResult> ChangeBalance(string id, float amount)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            user.Balance += amount;
+
+            if (user.Balance < 0.00f)
+            {
+                return BadRequest("User balance woulbe be negative");
+            }
+
+            await _userManager.UpdateAsync(user);
+            return Ok();
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+            if (user.Email == "root_rower@gmail.com")
+            {
+                return BadRequest("You cannot delete this user");
+            }
+            await _userManager.DeleteAsync(user);
+            return Ok();
+        }
+
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Create([FromBody] RegisterViewModel model)
         {
@@ -64,7 +95,8 @@ namespace Admin.Controllers.Api
                 Surname = model.Surname,
                 Sex = model.Sex,
                 PhoneNumber = model.PhoneNumber,
-                RegisterDate = DateTime.Now
+                RegisterDate = DateTime.Now,
+                Balance = 0.00f
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -79,24 +111,7 @@ namespace Admin.Controllers.Api
             return Ok();
         }
 
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login([FromBody] LoginViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    return Ok();
-        //}
-
+        [AllowAnonymous]
         [HttpPost("token")]
         public async Task<IActionResult> Token([FromBody] LoginViewModel model)
         {
@@ -106,7 +121,7 @@ namespace Admin.Controllers.Api
             }
 
             var user = await _userManager.FindByNameAsync(model.Email);
-            
+
             if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
             {
                 return BadRequest();

@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using Admin.Data;
 using Admin.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -16,13 +18,15 @@ namespace Admin.Controllers.Api
     [Route("api/bikes")]
     public class BikesController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly BikesContext _bikesContext;
         private readonly StationsContext _stationsContext;
 
-        public BikesController(BikesContext bikesContext, StationsContext stationsContext)
+        public BikesController(BikesContext bikesContext, StationsContext stationsContext, UserManager<ApplicationUser> userManager)
         {
             _bikesContext = bikesContext;
             _stationsContext = stationsContext;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -38,7 +42,7 @@ namespace Admin.Controllers.Api
         }
 
         [HttpPost("add")]
-        public IActionResult AddBike([FromBody] Bike bike)
+        public async Task<IActionResult> AddBike([FromBody] Bike bike)
         {
             if (!ModelState.IsValid)
             {
@@ -46,26 +50,34 @@ namespace Admin.Controllers.Api
             }
 
             Station station = FindStationById(bike.Station);
-
             if (station == null)
             {
                 return BadRequest("Station not found");
             }
+            if (station.FreeRacks < 1)
+            {
+                return BadRequest("Station is full");
+            }
 
-            var b = new Bike()
+            station.Bikes += 1;
+            station.FreeRacks -= 1;
+
+            var b = new Bike
             {
                 Id = bike.Id ?? Guid.NewGuid().ToString(),
                 Size = bike.Size,
                 Station = bike.Station,
-                Status = "Returned"
+                Status = bike.Status ?? "Returned"
             };
 
             try
             {
-                var result = _bikesContext.Add(b);
-                if (result.State == EntityState.Added)
+                var result = await _bikesContext.AddAsync(b);
+                var result2 = _stationsContext.Update(station);
+                if (result.State == EntityState.Added && result2.State == EntityState.Modified)
                 {
-                    _bikesContext.SaveChanges();
+                    await _bikesContext.SaveChangesAsync();
+                    await _stationsContext.SaveChangesAsync();
                     return Ok();
                 }
             }
@@ -75,18 +87,21 @@ namespace Admin.Controllers.Api
             }
             catch (DbUpdateException)
             {
-                return BadRequest("Incorrect input data");
+                return BadRequest("Incorrect input data. Size can be only 'Big' or 'Small' and Status 'Returned' or 'Rented'");
             }
-
             return BadRequest();
         }
 
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteBike(string id)
+        public async Task<IActionResult> DeleteBike(string id)
         {
             try
             {
                 Bike bike = FindBikeById(id);
+                if (bike == null)
+                {
+                    return BadRequest("Bike not found");
+                }
                 Station station = FindStationById(bike.Station);
                 var result = _bikesContext.Remove(bike);
                 station.Bikes -= 1;
@@ -94,8 +109,8 @@ namespace Admin.Controllers.Api
                 var result2 = _stationsContext.Update(station);
                 if (result.State == EntityState.Deleted && result2.State == EntityState.Modified)
                 {
-                    _bikesContext.SaveChanges();
-                    _stationsContext.SaveChanges();
+                    await _bikesContext.SaveChangesAsync();
+                    await _stationsContext.SaveChangesAsync();
                     return Ok();
                 }
             }
@@ -106,15 +121,66 @@ namespace Admin.Controllers.Api
             return BadRequest();
         }
 
-        [HttpPut("rent/{id}")]
-        public IActionResult RentBike(string id)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateBike(string id, [FromBody] Bike bike)
         {
             try
             {
-                Bike bike = FindBikeById(id);
+                Bike b = FindBikeById(id);
+                if (b == null)
+                {
+                    return BadRequest("Bike not found");
+                }
+                
+                b.Size = bike.Size;
+                b.Station = bike.Station ?? b.Station;
+                b.Status = bike.Status ?? b.Status;
+
+                var result = _bikesContext.Update(b);
+                if (result.State == EntityState.Modified)
+                {
+                    await _bikesContext.SaveChangesAsync();
+                    return Ok();
+                }
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Database update error");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+            return BadRequest();
+        }
+
+        [HttpPut("rent/{userId}/{bikeId}")]
+        public async Task<IActionResult> RentBike(string userId, string bikeId)
+        {
+            var user = _userManager.FindByIdAsync(userId).Result;
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+            if (user.Balance < 0.00f)
+            {
+                return BadRequest("User's balance is under 10");
+            }
+            try
+            {
+                Bike bike = FindBikeById(bikeId);
                 if (bike != null)
                 {
                     Station station = FindStationById(bike.Station);
+                    if (station == null)
+                    {
+                        return BadRequest("Station not found");
+                    }
+                    if (station.Bikes < 1)
+                    {
+                        return BadRequest("No bikes at this station");
+                    }
+
                     bike.Status = "Rented";
                     station.Bikes -= 1;
                     station.FreeRacks += 1;
@@ -122,28 +188,41 @@ namespace Admin.Controllers.Api
                     var result2 = _stationsContext.Update(station);
                     if (result.State == EntityState.Modified && result2.State == EntityState.Modified)
                     {
-                        _bikesContext.SaveChanges();
-                        _stationsContext.SaveChanges();
+                        await _bikesContext.SaveChangesAsync();
+                        await _stationsContext.SaveChangesAsync();
                         return Ok();
                     }
                 }
+                return BadRequest("Bike not found");
             }
             catch (DbUpdateException)
             {
                 return BadRequest();
             }
-            return BadRequest();
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
-        [HttpPut("return/{bikeId}/{stationId}")]
-        public IActionResult ReturnBike(string bikeId, string stationId)
+        [HttpPut("return/{bikeId}/{stationId}/{userId}")]
+        public async Task<IActionResult> ReturnBike(string bikeId, string stationId, string userId)
         {
+            var user = _userManager.FindByIdAsync(userId).Result;
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
             try
             {
                 Bike bike = FindBikeById(bikeId);
-                Station station = FindStationById(stationId);
-                if (bike != null && station != null)
+                if (bike != null)
                 {
+                    Station station = FindStationById(stationId);
+                    if (station == null)
+                    {
+                        return BadRequest("Station not found");
+                    }
                     if (station.FreeRacks < 1)
                     {
                         return BadRequest("No free racks");
@@ -153,21 +232,28 @@ namespace Admin.Controllers.Api
                     bike.Station = station.Id;
                     station.Bikes += 1;
                     station.FreeRacks -= 1;
+                    user.Balance -= 2.00f;
+
                     var result = _bikesContext.Update(bike);
                     var result2 = _stationsContext.Update(station);
                     if (result.State == EntityState.Modified && result2.State == EntityState.Modified)
                     {
-                        _bikesContext.SaveChanges();
-                        _stationsContext.SaveChanges();
+                        await _bikesContext.SaveChangesAsync();
+                        await _stationsContext.SaveChangesAsync();
+                        await _userManager.UpdateAsync(user);
                         return Ok();
                     }
                 }
+                return BadRequest("Bike not found");
             }
             catch (DbUpdateException)
             {
                 return BadRequest();
             }
-            return BadRequest();
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         private Bike FindBikeById(string id)
