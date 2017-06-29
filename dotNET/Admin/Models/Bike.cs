@@ -34,5 +34,8 @@ namespace Admin.Models
         [JsonProperty("status")]
         [Required(ErrorMessageResourceType = typeof(Resources.Errors.ModelDataValidation), ErrorMessageResourceName = "EmptyField")]
         public string Status { get; set; }
+
+        [JsonProperty("rentedBy")]
+        public string RentedBy { get; set; }
     }
 }

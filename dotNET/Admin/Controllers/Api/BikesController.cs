@@ -67,7 +67,8 @@ namespace Admin.Controllers.Api
                 Id = bike.Id ?? Guid.NewGuid().ToString(),
                 Size = bike.Size,
                 Station = bike.Station,
-                Status = bike.Status ?? "Returned"
+                Status = bike.Status ?? "Returned",
+                RentedBy = bike.RentedBy
             };
 
             try
@@ -135,6 +136,7 @@ namespace Admin.Controllers.Api
                 b.Size = bike.Size;
                 b.Station = bike.Station ?? b.Station;
                 b.Status = bike.Status ?? b.Status;
+                b.RentedBy = bike.RentedBy ?? b.RentedBy;
 
                 var result = _bikesContext.Update(b);
                 if (result.State == EntityState.Modified)
@@ -182,6 +184,7 @@ namespace Admin.Controllers.Api
                     }
 
                     bike.Status = "Rented";
+                    bike.RentedBy = user.Id;
                     station.Bikes -= 1;
                     station.FreeRacks += 1;
                     var result = _bikesContext.Update(bike);
@@ -205,14 +208,9 @@ namespace Admin.Controllers.Api
             }
         }
 
-        [HttpPut("return/{bikeId}/{stationId}/{userId}")]
-        public async Task<IActionResult> ReturnBike(string bikeId, string stationId, string userId)
+        [HttpPut("return/{bikeId}/{stationId}")]
+        public async Task<IActionResult> ReturnBike(string bikeId, string stationId)
         {
-            var user = _userManager.FindByIdAsync(userId).Result;
-            if (user == null)
-            {
-                return BadRequest("User not found");
-            }
             try
             {
                 Bike bike = FindBikeById(bikeId);
@@ -230,6 +228,8 @@ namespace Admin.Controllers.Api
 
                     bike.Status = "Returned";
                     bike.Station = station.Id;
+                    var user = _userManager.FindByIdAsync(bike.RentedBy).Result;
+                    bike.RentedBy = null;
                     station.Bikes += 1;
                     station.FreeRacks -= 1;
                     user.Balance -= 2.00f;
