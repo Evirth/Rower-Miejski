@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/rent_bike_drawer"
+            android:icon="@drawable/ic_menu_rent_bike"
+            android:checked="true"
+            android:title="Wypożycz rower" />
+        <item
+            android:id="@+id/return_bike_drawer"
+            android:icon="@drawable/ic_menu_return_bike"
+            android:title="Zwrot roweru" />
+        <item
+            android:id="@+id/show_map_drawer"
+            android:icon="@drawable/ic_menu_show_map"
+            android:title="Mapa rowerów i stacji" />
+        <item
+            android:id="@+id/account_settings_drawer"
+            android:icon="@drawable/ic_menu_account_settings"
+            android:title="Ustawienia konta" />
+        <item
+            android:id="@+id/rental_history_drawer"
+            android:icon="@drawable/ic_menu_rental_history"
+            android:title="Historia Wypożyczeń" />
+        <item
+            android:id="@+id/crash_report_drawer"
+            android:icon="@drawable/ic_menu_crash_report"
+            android:title="Zgłoszenie awarii" />
+        <item
+            android:id="@+id/faq_drawer"
+            android:icon="@drawable/ic_menu_faq_drawer"
+            android:title="FAQ" />
+        <item
+            android:id="@+id/logout_drawer"
+            android:icon="@drawable/ic_menu_logout"
+            android:title="Wyloguj" />
+    </group>
+
+    <!--
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_crash_report"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_rental_history"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/history_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poniedziałek" />
+
+        <TextView
+            android:id="@+id/history_date_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22.05.17" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/history_rent_return_in_margin"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/history_rent_return_out_margin"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/history_rent_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_menu_rent_bike"
+                android:layout_marginBottom="@dimen/history_img_margin" />
+
+            <TextView
+                android:id="@+id/history_rent_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stara Cegielnia" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/history_rent_time_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_rental_history_time"
+                    android:layout_marginEnd="@dimen/history_time_img_margin"/>
+
+                <TextView
+                    android:id="@+id/history_rent_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="14:00" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/history_rent_return_out_margin"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            >
+
+            <ImageView
+                android:id="@+id/history_return_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_menu_return_bike"
+                android:layout_marginBottom="@dimen/history_img_margin" />
+
+            <TextView
+                android:id="@+id/history_return_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plac Grunwaldzki" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/history_return_time_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_rental_history_time"
+                    android:layout_marginEnd="@dimen/history_time_img_margin"/>
+
+                <TextView
+                    android:id="@+id/history_return_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="14:21" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/history_meta_margin">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true" >
+
+            <TextView
+                android:id="@+id/history_bike_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Rower nr" />
+
+            <TextView
+                android:id="@+id/history_bike_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="91234" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/history_duration_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Czas trwania" />
+
+            <TextView
+                android:id="@+id/history_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="21 min" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/history_price_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Cena" />
+
+            <TextView
+                android:id="@+id/history_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="1 PLN" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

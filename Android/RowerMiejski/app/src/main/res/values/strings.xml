@@ -1,16 +1,181 @@
 <resources>
-    <string name="app_name">RowerMiejski</string>
+    <string name="app_name">Pedał Miejski</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_torch">Torch</string>
+    <string name="action_openReturn">Open Return</string>
+    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="action_sign_in">Zaloguj się</string>
+    <string name="action_sign_in_short">Zaloguj się</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="register">Rejestracja</string>
+
+    <!-- Zglaszanie awarii -->
+    <string name="opis_problemu">Opis problemu</string>
+    <string name="pole_wymagane">Pole wymagane</string>
+    <string name="rodzaj_awarii">Wybierz rodzaj awarii:</string>
+
+    <string-array name="category_names">
+        <item>Rower</item>
+        <item>Stacja</item>
+        <item>Inne</item>
+    </string-array>
+
+    <!-- FAQ -->
+    <string name="faq1Title">Pytanie 1</string>
+    <string name="faq1Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq2Title">Pytanie 2</string>
+    <string name="faq2Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq3Title">Pytanie 3</string>
+    <string name="faq3Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq4Title">Pytanie 4</string>
+    <string name="faq4Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string name="faq5Title">Pytanie 5</string>
+    <string name="faq5Text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum interdum erat, ac dignissim purus maximus sed. Aenean dictum orci quis velit hendrerit, eget condimentum risus finibus. Nullam varius ex vel lectus suscipit, sit amet ultrices ex venenatis. Maecenas malesuada eleifend facilisis. Proin malesuada odio ut eros hendrerit, id rhoncus. </string>
+
+    <string-array name="FAQ_title_strings">
+        <item>@string/faq1Title</item>
+        <item>@string/faq2Title</item>
+        <item>@string/faq3Title</item>
+        <item>@string/faq4Title</item>
+        <item>@string/faq5Title</item>
+    </string-array>
+
+    <string-array name="FAQ_text_strings">
+        <item>@string/faq1Text</item>
+        <item>@string/faq2Text</item>
+        <item>@string/faq3Text</item>
+        <item>@string/faq4Text</item>
+        <item>@string/faq5Text</item>
+    </string-array>
+
+    <!-- Rental history -->
+    <string name="rental_history_date_text_1">Poniedziałek</string>
+    <string name="rental_history_date_number_1">01.01.1999</string>
+    <string name="rental_history_rent_station_1">Jasne Błonia</string>
+    <string name="rental_history_rent_time_1">08:15</string>
+    <string name="rental_history_return_station_1">Brama Portowa</string>
+    <string name="rental_history_return_time_1">08:20</string>
+    <string name="rental_history_bike_number_1">91468</string>
+    <string name="rental_history_duration_1">00:05</string>
+    <string name="rental_history_price_1">0 PLN</string>
+
+    <string name="rental_history_date_text_2">Niedziela</string>
+    <string name="rental_history_date_number_2">01.01.1999</string>
+    <string name="rental_history_rent_station_2">Stara Cegielnia</string>
+    <string name="rental_history_rent_time_2">11:15</string>
+    <string name="rental_history_return_station_2">Wyszyńskiego</string>
+    <string name="rental_history_return_time_2">13:11</string>
+    <string name="rental_history_bike_number_2">91732</string>
+    <string name="rental_history_duration_2">01:56</string>
+    <string name="rental_history_price_2">3 PLN</string>
+
+    <string name="rental_history_date_text_3">Wtorek</string>
+    <string name="rental_history_date_number_3">01.02.1999</string>
+    <string name="rental_history_rent_station_3">Plac Rodła</string>
+    <string name="rental_history_rent_time_3">15:13</string>
+    <string name="rental_history_return_station_3">Rondo Giedroycia</string>
+    <string name="rental_history_return_time_3">15:34</string>
+    <string name="rental_history_bike_number_3">91965</string>
+    <string name="rental_history_duration_3">00:21</string>
+    <string name="rental_history_price_3">1 PLN</string>
+
+
+    <string-array name="rental_history_date_text_strings">
+        <item>@string/rental_history_date_text_1</item>
+        <item>@string/rental_history_date_text_2</item>
+        <item>@string/rental_history_date_text_3</item>
+    </string-array>
+
+    <string-array name="rental_history_date_number_strings">
+        <item>@string/rental_history_date_number_1</item>
+        <item>@string/rental_history_date_number_2</item>
+        <item>@string/rental_history_date_number_3</item>
+    </string-array>
+
+    <string-array name="rental_history_rent_station_strings">
+        <item>@string/rental_history_rent_station_1</item>
+        <item>@string/rental_history_rent_station_2</item>
+        <item>@string/rental_history_rent_station_3</item>
+    </string-array>
+
+    <string-array name="rental_history_rent_time_strings">
+        <item>@string/rental_history_rent_time_1</item>
+        <item>@string/rental_history_rent_time_2</item>
+        <item>@string/rental_history_rent_time_3</item>
+    </string-array>
+
+    <string-array name="rental_history_return_station_strings">
+        <item>@string/rental_history_return_station_1</item>
+        <item>@string/rental_history_return_station_2</item>
+        <item>@string/rental_history_return_station_3</item>
+    </string-array>
+
+    <string-array name="rental_history_return_time_strings">
+        <item>@string/rental_history_return_time_1</item>
+        <item>@string/rental_history_return_time_2</item>
+        <item>@string/rental_history_return_time_3</item>
+    </string-array>
+
+    <string-array name="rental_history_bike_number_strings">
+        <item>@string/rental_history_bike_number_1</item>
+        <item>@string/rental_history_bike_number_2</item>
+        <item>@string/rental_history_bike_number_3</item>
+    </string-array>
+
+    <string-array name="rental_history_duration_strings">
+        <item>@string/rental_history_duration_1</item>
+        <item>@string/rental_history_duration_2</item>
+        <item>@string/rental_history_duration_3</item>
+    </string-array>
+
+    <string-array name="rental_history_price_strings">
+        <item>@string/rental_history_price_1</item>
+        <item>@string/rental_history_price_2</item>
+        <item>@string/rental_history_price_3</item>
+    </string-array>
+
+    <!-- Rented bikes-->
+
+    <string name="rented_bike_number_1">91234</string>
+    <string name="rented_bike_lock_number_1">3028</string>
+    <string name="rented_bike_duration_1">00:05</string>
+
+    <string name="rented_bike_number_2">91259</string>
+    <string name="rented_bike_lock_number_2">0364</string>
+    <string name="rented_bike_duration_2">00:14</string>
+
+    <string-array name="rented_bike_number_strings">
+        <item>@string/rented_bike_number_1</item>
+        <item>@string/rented_bike_number_2</item>
+    </string-array>
+
+    <string-array name="rented_bike_lock_number_strings">
+        <item>@string/rented_bike_lock_number_1</item>
+        <item>@string/rented_bike_lock_number_2</item>
+    </string-array>
+
+    <string-array name="rented_bike_duration_strings">
+        <item>@string/rented_bike_duration_1</item>
+        <item>@string/rented_bike_duration_2</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
 </resources>
