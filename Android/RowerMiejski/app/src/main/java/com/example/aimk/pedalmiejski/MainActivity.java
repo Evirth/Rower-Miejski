@@ -168,7 +168,10 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.logout_drawer) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Wylogowano pomyślnie :)", Toast.LENGTH_SHORT).show();
             finish();
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

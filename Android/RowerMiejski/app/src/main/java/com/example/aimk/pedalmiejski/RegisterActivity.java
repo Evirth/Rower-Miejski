@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    boolean result = true;
+    boolean result = false;
     private EditText nameEditText;
     private EditText surnameEditText;
     private EditText numberEditText;
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 attemptRegister();
+
                 if(result) {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
@@ -68,7 +69,21 @@ public class RegisterActivity extends AppCompatActivity {
         String confirmpassword = confirmPasswordEditText.getText().toString();
 
 
-
+        if((password.isEmpty())||(confirmpassword.isEmpty()))
+        {
+            Toast.makeText(getApplicationContext(), "Haslo nie może być puste", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            if(password.equals(confirmpassword))
+            {
+                result=true;
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Hasla muszą być takie same", Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
 
