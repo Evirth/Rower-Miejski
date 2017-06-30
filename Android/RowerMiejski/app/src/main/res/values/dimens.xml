@@ -13,4 +13,5 @@
     <dimen name="history_img_margin">6dp</dimen>
     <dimen name="history_meta_margin">15dp</dimen>
     <dimen name="history_time_img_margin">2dp</dimen>
+    <dimen name="register_top_margin">10dp</dimen>
 </resources>

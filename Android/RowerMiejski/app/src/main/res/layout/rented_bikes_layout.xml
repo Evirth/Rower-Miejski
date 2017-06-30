@@ -32,7 +32,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/rented_bike_protection_number_layout"
+            android:id="@+id/rented_bike_lock_number_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -42,14 +42,14 @@
             >
 
             <TextView
-                android:id="@+id/rented_bike_protection_number_label"
+                android:id="@+id/rented_bike_lock_number_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Kod do linki" />
 
             <TextView
-                android:id="@+id/rented_bike_protection_number"
+                android:id="@+id/rented_bike_lock_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_toEndOf="@+id/rented_bike_protection_number_layout"
+            android:layout_toEndOf="@+id/rented_bike_lock_number_layout"
             android:layout_margin="8dp"
             >
 

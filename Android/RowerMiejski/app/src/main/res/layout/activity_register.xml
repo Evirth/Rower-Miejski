@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/name_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:ems="15"
+        android:inputType="textCapWords"
+        android:layout_alignParentTop="true"
+        android:maxLines="1"
+        android:hint="Imię"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/surname_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_register"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:ems="15"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:hint="Nazwisko"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/sex_textview_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/surname_register"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:layout_centerHorizontal="true"
+        android:textSize="18dp"
+        android:text="Płeć:"
+        android:textAlignment="center"
+        />
+
+    <RadioGroup
+        android:id="@+id/sex_radiogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sex_textview_register"
+        android:layout_marginTop="@dimen/register_top_margin"
+        >
+
+        <RadioButton
+            android:id="@+id/sex_male_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Mężczyzna"
+            android:onClick="onRadioButtonClicked"/>
+
+
+        <RadioButton
+            android:id="@+id/sex_female_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Kobieta"
+            android:onClick="onRadioButtonClicked"/>
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/phone_number_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sex_radiogroup"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:ems="15"
+        android:inputType="phone"
+        android:maxLines="1"
+        android:hint="Numer telefonu"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/email_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/phone_number_register"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:ems="15"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:hint="Adres email (login)"
+        android:textAlignment="center"/>
+
+
+    <EditText
+        android:id="@+id/password_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:ems="15"
+        android:fontFamily="sans-serif"
+        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:maxLines="1"
+        android:hint="Hasło"
+        android:layout_below="@+id/email_register"/>
+
+    <EditText
+        android:id="@+id/confirm_password_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:ems="15"
+        android:inputType="textPassword"
+        android:fontFamily="sans-serif"
+
+        android:layout_marginTop="@dimen/register_top_margin"
+        android:maxLines="1"
+        android:hint="Powtórz hasło"
+        android:layout_below="@+id/password_register"/>
+
+    <Button
+        android:id="@+id/register_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/register_top_margin"
+        android:text="Zarejestruj" />
+
+
+</RelativeLayout>

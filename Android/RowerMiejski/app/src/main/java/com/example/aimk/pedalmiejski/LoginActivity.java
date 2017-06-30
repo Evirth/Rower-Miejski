@@ -84,6 +84,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button registerButton = (Button) findViewById(R.id.register_button);
+
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptRegister();
+            }
+        });
+
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +104,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
         mEmailView.setText("email-testowy-do-debugowania@gmail.com");
         mPasswordView.setText("testowe");
+    }
+
+    private void attemptRegister() {
+        mAuthTask = null;
+        showProgress(false);
+
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void populateAutoComplete() {
