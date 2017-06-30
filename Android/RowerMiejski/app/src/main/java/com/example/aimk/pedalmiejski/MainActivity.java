@@ -133,6 +133,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_torch) {
             turnFlashLight();
         }
+        if (id == R.id.action_openReturn) {
+            android.app.FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new ReturnBikeFragment()).commit();
+        }
 
         return super.onOptionsItemSelected(item);
     }
